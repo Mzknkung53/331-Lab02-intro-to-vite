@@ -18,7 +18,7 @@ defineProps<{
 </script>
 
 <template>
-  <RouterLink :to="{name: 'event-detail', params:{id: event?.id}}">
+  <RouterLink class="eventr-link" :to="{name: 'event-detail', params:{id: event?.id}}">
   <div class="event-class">
     <div class="event-card">
       <h2>{{ event?.title }}</h2>
@@ -29,6 +29,11 @@ defineProps<{
 </template>
 
 <style scoped>
+.event-link {
+  color: #2c3e50;
+  text-decoration: none;
+}
+
 .event-card {
   padding: 20px;
   width: 250px;
