@@ -7,6 +7,8 @@ import EventDetailView from '@/views/event/EventDetailView.vue'
 import EventEditView from '@/views/event/EventEditView.vue'
 import EventRegisterView from '@/views/event/EventRegisterView.vue'
 import EventLayoutView from '@/views/event/EventLayoutView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
+import NetworkErrorView from '@/views/NetworkErrorView.vue'
 
 export function createAppRouter(pageLimit: (number | null)[]) {
   return createRouter({
@@ -57,6 +59,22 @@ export function createAppRouter(pageLimit: (number | null)[]) {
             component: EventRegisterView
           }
         ]
+      },
+      {
+        path: '/404/:resource',
+        name: '404-resource',
+        component: NotFoundView,
+        props: true
+      },
+      {
+        path: '/:catchAll(.*)',
+        name: 'not-found',
+        component: NotFoundView
+      },
+      {
+        path: '/network-error',
+        name: 'network-error',
+        component: NetworkErrorView
       },
       {
         path: '/event/:id/edit',
