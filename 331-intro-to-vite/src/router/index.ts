@@ -45,7 +45,7 @@ export function createAppRouter(pageLimit: (number | null)[]) {
           },
           {
             path: 'edit',
-            name: 'event-detail',
+            name: 'event-edit',
             props:true,
             component: EventEditView
             
