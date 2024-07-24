@@ -4,7 +4,7 @@ import type { Event } from '@/type'
 import { ref, onMounted, watchEffect, computed } from 'vue'
 import EventService from '@/services/EventService'
 import type { AxiosResponse } from 'axios'
-import nProgress from 'nprogress'
+
 
 const events = ref<Event[]>([])
 const totalEvent = ref<number>(0)
@@ -23,17 +23,14 @@ onMounted(() => {
     EventService.getEvents(props.pageLimit, props.page)
       .then((response: AxiosResponse<Event[]>) => {
         events.value = response.data
-        nProgress.start()
+        
         totalEvent.value = response.headers['x-total-count']
       })
       .catch((error) => {
         console.error('There was an error!', error)
       })
-      .finally(() => {
-        nProgress.done()
       })
   })
-})
 const hasNextPage = computed(() => {
   // calculate total page
   const totalPages = props.pageLimit.length - 1
