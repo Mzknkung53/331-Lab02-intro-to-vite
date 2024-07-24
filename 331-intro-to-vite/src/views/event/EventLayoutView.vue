@@ -11,9 +11,12 @@ const router = useRouter()
 EventService.getEventById(Number(props.id))
     .then((response) => {
         event.value = response.data
+        
     }).catch(error => {
         console.log(error)
-        if(error.resource && error.response.status === 404) {
+        console.log('error respose', error.response)
+        if(error.response && error.response.status === 404) {
+          
             router.push({name: '404-resource', params: { resource: 'event'}})
         } else {
             router.push({ name: 'network-error'})
