@@ -16,6 +16,7 @@ export interface Event {
     gpa: number
     image: string
     description: string
+    surname: string
   }
   export interface MessageState {
     message: string
