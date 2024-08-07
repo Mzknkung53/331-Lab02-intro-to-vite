@@ -5,7 +5,6 @@ import { ref, onMounted, watchEffect, computed } from 'vue'
 import EventService from '@/services/EventService'
 import type { AxiosResponse } from 'axios'
 
-
 const events = ref<Event[]>([])
 const totalEvent = ref<number>(0)
 const props = defineProps({
@@ -23,14 +22,13 @@ onMounted(() => {
     EventService.getEvents(props.pageLimit, props.page)
       .then((response: AxiosResponse<Event[]>) => {
         events.value = response.data
-        
         totalEvent.value = response.headers['x-total-count']
       })
       .catch((error) => {
         console.error('There was an error!', error)
       })
-      })
   })
+})
 const hasNextPage = computed(() => {
   // calculate total page
   const totalPages = props.pageLimit.length - 1
@@ -41,7 +39,7 @@ const hasNextPage = computed(() => {
 <template>
   <h1>Event for good</h1>
   <!--new element-->
-  <div class="flex flex-col item-center">
+  <div class="flex flex-col items-center">
     <EventCard v-for="event in events" :key="event.id" :event="event"></EventCard>
     <EventInfo v-for="event in events" :key="event.id" :event="event"></EventInfo>
     <div class="pagination">
