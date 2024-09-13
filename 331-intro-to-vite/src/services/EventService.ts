@@ -2,7 +2,7 @@ import axios, { type AxiosResponse } from 'axios'
 import type { Event } from '@/type'
 
 const apiClient = axios.create({
-  baseURL: 'https://my-json-server.typicode.com/mzknkung53/652115008/',
+  baseURL: import.meta.env.VITE_BACKEND_URL,
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -36,5 +36,9 @@ export default {
 
   getEventById(id: number): Promise<AxiosResponse<Event>> {
     return apiClient.get<Event>(`/events/${id}`)
+  },
+
+  saveEvent(event: Event) {
+    return apiClient.post('/events', event)
   }
 }
