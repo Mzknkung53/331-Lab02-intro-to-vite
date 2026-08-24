@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { type Event } from '@/type'
+import { type Organizer } from '@/type'
 const props = defineProps<{
-  event: Event
+  organizer: Organizer
 }>()
 
 </script>
 
 <template>
-  <RouterLink class="text-[#2c3e50] no-underline" :to="{ name: 'event-detail-view', params: { id: event.id } }">
+ 
   <div class="event-class">
     <div 
     class="cursor-pointer border border-gray-600 p-[20px] w-[250px] mb-[18px] hover:scale-101 hover:shadow-sp"
     >
-      <h2>{{ props.event.title }}</h2>
-      <span>{{ event.category }} @ {{ event.location }}</span>
+      <h2>{{ props.organizer }}</h2>
+      <span>{{ organizer.organizationName }} @ {{ organizer.address }}</span>
     </div>
   </div>
-</RouterLink>
 </template>
 
 <style scoped>
